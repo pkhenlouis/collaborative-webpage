@@ -1,8 +1,155 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Collaborative Webpage</title>
-  </head>
-  <body>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Button Feature</title>
+</head>
+<body>
+
+  <button onclick="messagepopup()" style = "background-color: limegreen; color: black; border-radius: 20px; font-size: 24px; padding: 12px 24px;">Buy</button> 
+<!-- pede palitan yung "Buy" depende sa content natin -->
+
+  <script>
+    function messagepopup() {
+      alert("Already bought the item");
+        // eto depende rin sa content
+    }
+  </script>
+
+<!-- ibang type na to ng button -->
+  <!-- dito para ma redirect -->
+
+    <br>
+
+    <a href="https://www.google.com">
+        <!-- palitan nalang yung nasa loob ng "" pede rin palitan kulay -->
+        <button style = "background-color: crimson; color: yellow; border-radius: 10px; font-size: 20px; padding: 15px 30px;">Take me to google</button>
+    </a>
+
+
+    <!-- eto toggle button kung gusto dark mode o light mode  -->
+
+    <br>
+    <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      transition: background-color 0.3s, color 0.3s;
+      font-family: sans-serif;
+      background-color: white;
+      color: black;
+    }
+
+    body.dark {
+      background-color: black;
+      color: gray;
+    }
+
+    /* eto yung pwesto at ayos nung toggle button bahala na kung san ipwepwesto, ganon din sa iba*/
+    .container {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    input[type="checkbox"] {
+      display: none;
+    }
+
+    .button {
+      background-color: silver;
+      width: 120px;
+      height: 60px;
+      border-radius: 30px;
+      cursor: pointer;
+      position: relative;
+      transition: background-color 0.3s;
+    }
+
+    .button::before {
+      position: absolute;
+      content: '';
+      background-color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      top: 5px;
+      left: 5px;
+      transition: transform 0.3s;
+    }
+
+    input:checked + .button {
+      background-color: darkblue;
+    }
+
+    input:checked + .button::before {
+      transform: translateX(60px);
+    }
+
+    .mode-text {
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <span id="modeText" class="mode-text">Switch to Dark Mode</span>
+    <input type="checkbox" id="check">
+    <label for="check" class="button"></label>
+  </div>
+
+  <script>
+    const checkbox = document.getElementById('check');
+    const body = document.body;
+    const modeText = document.getElementById('modeText');
+
+
+
+    checkbox.addEventListener('change', () => {
+      const isDark = checkbox.checked;
+      body.classList.toggle('dark', isDark);
+      modeText.textContent = isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+
+
+    });
+  </script>
+
+  <!-- eto naman kung may gusto reset button palitan nalang label pati nasa input -->
+    <form id = "myForm">
+        <label for = "name">Name</label>
+        <input type="text" id="name" name="name">
+        <br>
+        <label for = "address">Address</label>
+        <input type="text" id="address" name="address">
+        <br>
+        <label for = "email">Email</label>
+        <input type="text" id="email" name="email" required>
+        <br>
+        <label for = "password">Password</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+
+        <button type="submit" style="background-color: green; color: black; border-radius: 5px;">Submit</button>
+        <button type="button" onclick="resetForm()" style="background-color: red; color: silver; border-radius: 5px;">Reset</button>
+
+
+        <script>
+            function resetForm() {
+             document.getElementById("myForm").reset();
+            }
+        </script>
+
+    </form>
+
+
+
+</body>
 </html>
